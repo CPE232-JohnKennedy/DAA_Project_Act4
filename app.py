@@ -1,6 +1,5 @@
 import streamlit as st
 import tensorflow as tf
-import sklearn
 
 @st.cache_resource
 def load_model():

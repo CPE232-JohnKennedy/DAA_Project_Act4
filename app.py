@@ -1,5 +1,6 @@
 import streamlit as st
 import tensorflow as tf
+import sklearn
 
 @st.cache_resource
 def load_model():
@@ -7,14 +8,14 @@ def load_model():
   return model
 model=load_model()
 st.write("""
-# Card Classification System by Group 4 """
+# Card Classification System by Group 5 """
 )
-st.text(" Course and Section: CPE 019 - CPE32S3")
+st.text(" Course and Section: CPE 028 - CPE41S4")
 st.text(" Members:")
-st.text(" Eniceo, Sean Paolo")
+st.text(" Aquino, John Kennedy")
 st.text(" Fernandez, Rhenz")
-st.text(" Sabio, Jedawn")
-st.text(" Instructor: Engr. Roman M. Richard")
+st.text(" Maravilla, Keith Dominic")
+st.text(" Instructor: Dr. Jonathan V. Taylar")
 file=st.file_uploader("Choose card photo from computer",type=["jpg","png"])
 
 import cv2

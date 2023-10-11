@@ -1,44 +1,28 @@
-name: Auto Merge On Test Success
+name: Check Task Status
 
 on:
   push:
     branches:
-      - main  # Change to the default branch of your repository
+      - main
 
 jobs:
-  test:
+  check_task:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8  # Change to your desired Python version
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt  # Modify as per your project setup
-
-    - name: Run Tests
-      run: pytest  # Replace with your test command
-
-  merge:
-    runs-on: windows-latest
-    needs: test
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Merge if Tests Passed
+    - name: Check Task Status
       run: |
-        # Check if the 'test' job was successful
-        if [[ "${{ needs.test.result }}" == "success" ]]; then
-          # If tests passed, merge the changes
-          git fetch
-          git merge --ff-only ${{ github.ref }}
-          git push
+        task_status=$(cat task_status.txt)
+
+        if [ "$task_status" == "pending" ]; then
+          echo "Task is still pending."
+          exit 1  # Exit with a non-zero status to indicate a failure.
+        elif [ "$task_status" == "finished" ]; then
+          echo "Task is finished."
         else
-          echo "Tests failed, not merging changes."
+          echo "Invalid task status."
+          exit 1  # Exit with a non-zero status for any unexpected status.
         fi

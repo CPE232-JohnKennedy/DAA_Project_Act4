@@ -11,7 +11,7 @@ st.write("""
 )
 st.text(" Course and Section: CPE 028 - CPE41S4")
 st.text(" Members:")
-st.text(" Aquino, John Kennedy")
+st.text(" Aquino, John Kennedy").
 st.text(" Fernandez, Rhenz")
 st.text(" Maravilla, Keith Dominic")
 st.text(" Instructor: Dr. Jonathan V. Taylar")

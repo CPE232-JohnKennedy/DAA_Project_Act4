@@ -1,0 +1,27 @@
+name: Check Task Finished
+
+on:
+  push:
+    branches:
+      - main  # Change to the default branch of your repository
+
+jobs:
+  check_task:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check if Task is Finished
+      run: |
+        # Replace 'task_file.txt' with the name of the file containing your task status.
+        task_status=$(cat task_file.txt)
+
+        # Check if the task is marked as 'finished'.
+        if [ "$task_status" == "finished" ]; then
+          echo "Task is finished."
+        else
+          echo "Task is not finished."
+          # You can add further steps or notifications here.
+        fi
